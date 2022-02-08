@@ -26,8 +26,9 @@ function Body() {
       >
         Workspaces
       </div>
-      //Render the Workspace component is no workspace is selected else render the Tasks component for the corresponding selected workspace
-      {!selectedWorkspace ? (
+      
+      {//Render the Workspace component is no workspace is selected else render the Tasks component for the corresponding selected workspace
+        !selectedWorkspace ? (
         <Workspaces
           socket={socket}
           //   workspaceList={workspaceList}
