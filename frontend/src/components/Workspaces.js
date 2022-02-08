@@ -1,15 +1,19 @@
+// For schema details of the Workspace object, refer to workspace.js in backend folder
+
 import React, { useEffect, useState } from "react";
 import "./Workspace.css";
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
 
 function Workspaces(props) {
+  
   const [workspaceList, setWorkspaceList] = useState([]);
   const [open, setOpen] = useState(false);
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
   var newWorkspace = {};
 
+  // Load the list of previously created workspaces once during the first rendering
   useEffect(() => {
     props.socket.emit("login");
     props.socket.on("allWorkspaces", (workspaces) => {
@@ -18,7 +22,8 @@ function Workspaces(props) {
       setWorkspaceList(workspaces);
     });
   }, []);
-
+  
+  // Keep listening for New Workspaces that might be created by other users in the organization
   useEffect(() => {
     // console.log("use effect");
     const wplistener = ({ workspace }) => {
@@ -28,6 +33,7 @@ function Workspaces(props) {
     return () => props.socket.off("newWorkspace", wplistener);
   });
 
+  // Function to be called whenever a new workspace is to be created
   const addNewWorkspace = () => {
     // e.preventDefault();
     console.log("adding workspace...");
@@ -35,6 +41,8 @@ function Workspaces(props) {
       name: document.getElementById("name").value,
       description: document.getElementById("desc").value,
     };
+    
+    // Send the details to the server to be stored and broadcasted to other users
     props.socket.emit("addWorkspace", newWorkspace);
     setOpen(false);
   };
