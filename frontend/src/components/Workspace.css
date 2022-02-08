@@ -1,0 +1,51 @@
+.wp-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2%;
+  margin: 10px;
+}
+
+.wp-body {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+
+.workspace {
+  /* width: 100%; */
+  height: 20%;
+  border: 2px solid black;
+  padding: 2%;
+  margin: 5px;
+  font-size: medium;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.wp-name {
+  font-weight: bolder;
+}
+
+.wp-desc {
+  font-weight: 400;
+}
+
+.react-responsive-modal-modal {
+  width: 50%;
+}
+
+.form-control {
+  width: 100%;
+}
+
+#name {
+  height: 5vh;
+  margin-bottom: 5%;
+}
+
+#desc {
+  height: 15vh;
+  margin-bottom: 5%;
+}
