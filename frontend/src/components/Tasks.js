@@ -1,3 +1,5 @@
+// For schema details of the Task object, refer to tasks.js in backend folder
+
 import React, { useEffect, useState } from "react";
 import "./Tasks.css";
 import { Modal } from "react-responsive-modal";
@@ -22,6 +24,7 @@ function Tasks(props) {
   const onOpenModal = () => setOpen(true);
   const onCloseModal = () => setOpen(false);
 
+  // Load the list of previously created tasks for the corresponding selected workspace once during the first rendering
   useEffect(() => {
     props.socket.emit("openWorkspace", props.selectedWorkspace);
     props.socket.on("allTasks", (tasks) => {
@@ -29,6 +32,7 @@ function Tasks(props) {
     });
   }, []);
 
+  // Keep listening for New Tasks that might be added by other users to this workspace
   useEffect(() => {
     const tasklistener = ({ task }) => {
       setTaskList((oldList) => [...oldList, task]);
@@ -37,6 +41,7 @@ function Tasks(props) {
     return () => props.socket.off("newTask", tasklistener);
   });
 
+  // Function to be called whenever a new task is created
   const addNewTask = () => {
     var newTask = {
       name: document.getElementById("name").value,
@@ -45,6 +50,7 @@ function Tasks(props) {
       assignedTo: "None",
       workspaceName: props.selectedWorkspace.name,
     };
+    // Send the details to the server to be stored and broadcasted to other users
     props.socket.emit("addTask", newTask);
     setOpen(false);
   };
