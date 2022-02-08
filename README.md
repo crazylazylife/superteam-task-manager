@@ -1,6 +1,8 @@
 # Superteam Task Manager Application
 A small attempt at creating a task management application for Superteam Lurkers Got Talent submission usinf React, Socket.io and Redis.
 
+A Medium blog explaining the implementations more deeply: [Link](https://medium.com/@himadrisankarchatterjee/task-management-app-with-react-socket-io-and-redis-ebffc4d0fde6)
+
 ![task-manager-homepage](homepage1.png)
 
 ## Techstack
