@@ -125,4 +125,3 @@ function Tasks(props) {
 }
 
 export default Tasks;
-<p>Tasks</p>;
