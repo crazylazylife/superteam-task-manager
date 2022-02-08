@@ -6,7 +6,9 @@ import io from "socket.io-client";
 
 const socket = io.connect("http://localhost:4000");
 function Body() {
+  // To hold the details of the currently selected workspace
   const [selectedWorkspace, setSelectedWorkspace] = useState(null);
+  
   //   const [workspaceList = [];
   //   socket.emit("login");
   //   socket.on("allWorkspaces", ({ workspaces }) => {
@@ -24,6 +26,7 @@ function Body() {
       >
         Workspaces
       </div>
+      //Render the Workspace component is no workspace is selected else render the Tasks component for the corresponding selected workspace
       {!selectedWorkspace ? (
         <Workspaces
           socket={socket}
